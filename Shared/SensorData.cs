@@ -10,7 +10,7 @@ namespace Shared
     {
         public int Id { get; set; }
         public double Temperatura { get; set; }
-        public double NivelAgua { get; set; }
+        public double Pressao { get; set; }
         public DateTime Timestamp { get; set; }
     }
 }
