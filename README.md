@@ -13,6 +13,8 @@ A **API de Processamento** é o núcleo do Sistema Integrado de Monitoramento In
 * **Base URL (Desenvolvimento):** `http://localhost:5022` ou `https://localhost:7257`
 * **Documentação Swagger:** `/documentacao`
 
+---
+
 <h1 align='center'>🛠️ Tecnologias Utilizadas</h1>
 
 * **.NET 8.0**
@@ -98,3 +100,5 @@ Se um sensor enviar um valor superior a esses limites, a API rejeitará a entrad
 <h1 align='center'>🗄️ Persistência de Dados</h1>
 Os dados são persistidos em um arquivo de banco de dados local chamado `sensores.db` utilizando SQLite. 
 A estrutura da tabela principal (`Sensores`) inclui os campos `Id` (Chave Primária), `Temperatura`, `Pressao` e `Timestamp`.
+
+---
