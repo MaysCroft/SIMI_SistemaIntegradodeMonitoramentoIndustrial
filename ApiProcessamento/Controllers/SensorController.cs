@@ -21,6 +21,17 @@ namespace ApiProcessamento.Controllers
         }
 
         /// <summary>
+        /// GET api/v1/sensores: Retorna a lista de todos os dados dos sensores armazenados no banco de dados. 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> Listar()
+        {
+            var dados = await _context.Sensores.ToListAsync();
+            return Ok(dados);
+        }
+
+        /// <summary>
         /// POST api/v1/sensores: Recebe os dados do sensor e os armazena no banco de dados.
         /// </summary>
         /// <param name="sensor"></param>
@@ -32,26 +43,20 @@ namespace ApiProcessamento.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Receber(SensorData sensor)
         {
-            if (sensor.Temperatura > _config.Value.MaxTemperatura || sensor.Pressao > _config.Value.MaxPressao)
+            if (sensor.Temperatura > _config.Value.MaxTemperatura)
             {
-                return BadRequest("Temperatura ou Pressão acima do limite permitido!");
+                return BadRequest("Temperatura acima do limite permitido!");
+            }
+
+            if (sensor.Pressao > _config.Value.MaxPressao)
+            {
+                return BadRequest("Pressão acima do limite permitido!");
             }
 
             _context.Sensores.Add(sensor);
             await _context.SaveChangesAsync();
 
             return Ok();
-        }
-
-        /// <summary>
-        /// GET api/v1/sensores: Retorna a lista de todos os dados dos sensores armazenados no banco de dados. 
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<IActionResult> Listar()
-        {
-            var dados = await _context.Sensores.ToListAsync();
-            return Ok(dados);
         }
     }
 }
