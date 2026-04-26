@@ -10,8 +10,8 @@ A **API de Processamento** é o núcleo do Sistema Integrado de Monitoramento In
 
 <h1 align='center'>📌 Endereços de Acesso</h1>
 
-* **Base URL (Desenvolvimento):** `http://localhost:5022` ou `https://localhost:7257`
-* **Documentação Swagger:** `/documentacao`
+* **Base URL (Desenvolvimento):** *http://localhost:5022* ou *https://localhost:7257*
+* **Documentação Swagger:** /documentacao
 
 ---
 
@@ -25,16 +25,16 @@ A **API de Processamento** é o núcleo do Sistema Integrado de Monitoramento In
 
 <h1 align='center'>📑 Endpoints da API</h1>
 
-A API utiliza a rota base: `api/v1/sensores`.
+A API utiliza a rota base: ***api/v1/sensores***.
 
 ### 1. Listar Dados dos Sensores
 Retorna o histórico completo de todas as leituras armazenadas no banco de dados.
 
-* **Método:** `GET`
-* **Rota:** `/api/v1/sensores`
+* **Método:** GET
+* **Rota:** /api/v1/sensores
 * **Resposta de Sucesso:**
-    * **Código:** `200 OK`
-    * **Corpo:** Lista de objetos `SensorData`.
+    * **Código:** 200 OK
+    * **Corpo:** Lista de objetos SensorData.
 
 **Exemplo de Resposta:**
 ```json
@@ -59,15 +59,15 @@ Retorna o histórico completo de todas as leituras armazenadas no banco de dados
 ### 2. Receber Dados do Sensor
 Recebe uma nova leitura, valida se os valores estão dentro dos limites configurados e salva no banco de dados.
 
-* **Método:** `POST`
-* **Rota:** `/api/v1/sensores`
+* **Método:** POST
+* **Rota:**`/api/v1/sensores
 * **Parâmetros (Corpo da Requisição):**
 
-| Campo         | Tipo       | Descrição                  |
-| :------------ | :--------- | :------------------------- |
-| `temperatura` | `double`   | Valor da temperatura em °C |
-| `pressao`     | `double`   | Valor da pressão em bar    |
-| `timestamp`   | `DateTime` | Data e hora da leitura     |
+| Campo        | Tipo     | Descrição                  |
+| :----------- | :------- | :------------------------- |
+| temperatura  | double   | Valor da temperatura em °C |
+| pressao      | double   | Valor da pressão em bar    |
+| timestamp    | DateTime | Data e hora da leitura     |
 
 **Exemplo de Requisição (JSON):**
 
@@ -80,14 +80,14 @@ Recebe uma nova leitura, valida se os valores estão dentro dos limites configur
 ```
 
 * **Respostas:**
-    * **`200 OK`**: "Dados do sensor recebidos com sucesso!"
-    * **`400 Bad Request`**: "Temperatura acima do limite permitido!" ou "Pressão acima do limite permitido!"
+    * **200 OK**: "Dados do sensor recebidos com sucesso!"
+    * **400 Bad Request**: "Temperatura acima do limite permitido!" ou "Pressão acima do limite permitido!"
 
 ---
 
 <h1 align='center'>⚙️ Regras de Negócio e Configuração</h1>
 
-A API possui um sistema de validação baseado em limites máximos definidos no arquivo `appsettings.json`.
+A API possui um sistema de validação baseado em limites máximos definidos no arquivo ***appsettings.json***.
 
 * **Limites Padrão:**
     * **Temperatura Máxima:** 80 °C
