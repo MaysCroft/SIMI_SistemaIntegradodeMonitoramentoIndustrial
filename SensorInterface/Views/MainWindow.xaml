@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SensorInterface"
+        xmlns:local="clr-namespace:SensorInterface" 
+        xmlns:viewmodels="clr-namespace:SensorInterface.ViewModels" 
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
         Title="Interface de Sensores" 
         Height="450" 
@@ -15,14 +17,21 @@
                 Command="{Binding CarregarSensoresCommand}" />
 
         <ListBox Margin="6"
-                 Height="210"
                  ItemsSource="{Binding Temperaturas}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding StringFormat={}{0} °C}" />
+                    <TextBlock Text="{Binding StringFormat={}{0:F2} °C}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
+        </ListBox>
 
+        <ListBox Margin="6"
+         ItemsSource="{Binding Pressoes}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding StringFormat={}{0:F2} bar}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
     </StackPanel>
 </Window>

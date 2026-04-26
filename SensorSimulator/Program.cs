@@ -1,5 +1,5 @@
-﻿using Shared;
-using System.Net.Http.Json;
+﻿using System.Net.Http.Json;
+using Shared;
 
 var http = new HttpClient();
 int index = 0;
@@ -10,6 +10,7 @@ while (true)
     {
         Id = index,
         Temperatura = new Random().Next(20, 100),
+        Pressao = new Random().Next(1, 10),
         Timestamp = DateTime.Now
     };
 
@@ -23,7 +24,7 @@ while (true)
     }
     else
     {
-        Console.WriteLine($"Enviado: {sensor.Temperatura}");
+        Console.WriteLine($"Enviado: Temperatura: {sensor.Temperatura} - Pressão: {sensor.Pressao}");
     }
 
     await Task.Delay(2000);

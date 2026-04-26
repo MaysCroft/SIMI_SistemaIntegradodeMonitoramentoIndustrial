@@ -1,5 +1,5 @@
-using ApiProcessamento.Config;
 using ApiProcessamento.Data;
+using ApiProcessamento.Config;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +19,7 @@ builder.Services.AddSwaggerGen(options =>
 
 // Configuração do Entity Framework Core para usar o SQLite como banco de dados
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=simibd.db"));
+    options.UseSqlite("Data Source=sensores.db"));
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -31,11 +31,14 @@ builder.Services.Configure<ApiConfig>(
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// Url personalizada para acessar a documentação - http://localhost:5000/documentacao
+app.UseSwagger();
+app.UseSwaggerUI();
+app.UseSwaggerUI(options =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    options.RoutePrefix = "documentacao";
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "API SIMI v1");
+});
 
 app.UseHttpsRedirection();
 

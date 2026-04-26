@@ -6,6 +6,11 @@ using System.Collections.Generic;
 
 namespace Shared
 {
+    /// <summary>
+    /// SensorData - Classe que representa os dados coletados pelos sensores.
+    /// Ela contém propriedades para armazenar a temperatura, pressão e o timestamp
+    /// (data e hora) da leitura do sensor.
+    /// </summary>
     public class SensorData
     {
         public int Id { get; set; }
