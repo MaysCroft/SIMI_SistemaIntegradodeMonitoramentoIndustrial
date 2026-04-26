@@ -23,6 +23,7 @@ namespace SensorInterface.ViewModels
     /// </summary>
     internal class MainViewModel : BaseViewModel
     {
+        public ObservableCollection<DateTime> Horario { get; set; }
         public ObservableCollection<double> Temperaturas { get; set; }
         public ObservableCollection<double> Pressoes { get; set; }
 
@@ -30,6 +31,7 @@ namespace SensorInterface.ViewModels
 
         public MainViewModel()
         {
+            Horario = new ObservableCollection<DateTime>();
             Temperaturas = new ObservableCollection<double>();
             Pressoes = new ObservableCollection<double>();
 
@@ -44,11 +46,13 @@ namespace SensorInterface.ViewModels
             var dados = await http.GetFromJsonAsync<List<SensorData>>(
                 "https://localhost:7257/api/v1/sensores");
 
+            Horario.Clear();
             Temperaturas.Clear();
             Pressoes.Clear();
 
             foreach (var sensor in dados)
             {
+                Horario.Add(sensor.Timestamp);
                 Temperaturas.Add(sensor.Temperatura);
                 Pressoes.Add(sensor.Pressao);
             }

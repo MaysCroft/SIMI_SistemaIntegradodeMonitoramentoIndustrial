@@ -43,6 +43,10 @@ namespace ApiProcessamento.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// GET api/v1/sensores: Retorna a lista de todos os dados dos sensores armazenados no banco de dados. 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Listar()
         {

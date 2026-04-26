@@ -17,6 +17,15 @@
                 Command="{Binding CarregarSensoresCommand}" />
 
         <ListBox Margin="6"
+         ItemsSource="{Binding Horario}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding StringFormat={}{0:HH:mm:ss}}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <ListBox Margin="6"
                  ItemsSource="{Binding Temperaturas}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
