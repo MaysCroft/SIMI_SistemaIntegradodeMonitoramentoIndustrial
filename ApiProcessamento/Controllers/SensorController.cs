@@ -56,7 +56,7 @@ namespace ApiProcessamento.Controllers
             _context.Sensores.Add(sensor);
             await _context.SaveChangesAsync();
 
-            return Ok();
+            return Ok("Dados do sensor recebidos com sucesso!");
         }
     }
 }
