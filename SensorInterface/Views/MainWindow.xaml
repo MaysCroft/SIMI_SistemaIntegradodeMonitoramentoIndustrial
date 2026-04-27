@@ -88,7 +88,7 @@
 
                 <Button Content="Calibrar"
                         Margin="5"
-                        Command="{Binding CalibrarCommand}"/>
+                        Command="{Binding Calibrar}"/>
             </StackPanel>
         </TabItem>
     </TabControl>
