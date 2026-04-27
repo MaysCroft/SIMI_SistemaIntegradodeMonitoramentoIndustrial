@@ -12,60 +12,84 @@
         Width="800"
         WindowState="Maximized">
 
-    <StackPanel>
-        <Button Content="Atualizar"
-                Margin="5"
-                Command="{Binding CarregarSensoresCommand}" />
+    <TabControl>
+        <TabItem Header="Sensores">
+            <StackPanel>
+                <Button Content="Atualizar"
+                        Margin="5"
+                        Command="{Binding CarregarSensoresCommand}" />
 
-        <TextBlock Margin="5"
-                   Text="Horário:"/>
+                <TextBlock Margin="5"
+                           Text="Horário:"/>
 
-        <ScrollViewer Margin="5"
-                      Height="150">
+                <ScrollViewer Margin="5"
+                              Height="150">
 
-            <ListBox Margin="5" 
-                     ItemsSource="{Binding Horario}">
+                    <ListBox Margin="5" 
+                             ItemsSource="{Binding Horario}">
 
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding StringFormat={}{0:HH:mm:ss}}" />
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </ScrollViewer>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StringFormat={}{0:HH:mm:ss}}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
 
-        <TextBlock Margin="5" 
-                   Text="Temperatura (°C):"/>
+                <TextBlock Margin="5" 
+                           Text="Temperatura (°C):"/>
 
-        <ScrollViewer Margin="5" 
-                      Height="150">
+                <ScrollViewer Margin="5" 
+                              Height="150">
 
-            <ListBox Margin="5" 
-                     ItemsSource="{Binding Temperaturas}">
+                    <ListBox Margin="5" 
+                             ItemsSource="{Binding Temperaturas}">
 
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding StringFormat={}{0:F2} °C}" />
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </ScrollViewer>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StringFormat={}{0:F2} °C}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
 
-        <TextBlock Margin="5"
-                   Text="Pressão (bar):"/>
+                <TextBlock Margin="5"
+                           Text="Pressão (bar):"/>
 
-        <ScrollViewer Margin="5" 
-                      Height="150">
+                <ScrollViewer Margin="5" 
+                              Height="150">
 
-            <ListBox Margin="5" 
-                     ItemsSource="{Binding Pressoes}">
+                    <ListBox Margin="5" 
+                             ItemsSource="{Binding Pressoes}">
 
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding StringFormat={}{0:F2} bar}" />
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </ScrollViewer>
-    </StackPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StringFormat={}{0:F2} bar}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Calibração">
+            <StackPanel>
+                <TextBlock Margin="5"
+                           Text="Temperatura Máxima (°C):"/>
+                
+                <TextBox Margin="5"
+                         Text="{Binding TemperaturaMaxima, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Margin="5"
+                           Text="Pressão Máxima (bar):"/>
+                
+                <TextBox Margin="5"
+                         Text="{Binding PressaoMaxima, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Content="Calibrar"
+                        Margin="5"
+                        Command="{Binding CalibrarCommand}"/>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
 </Window>

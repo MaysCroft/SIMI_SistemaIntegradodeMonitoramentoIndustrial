@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -28,6 +30,7 @@ namespace SensorInterface.ViewModels
         public ObservableCollection<double> Pressoes { get; set; }
 
         public ICommand CarregarSensoresCommand { get; }
+        public ICommand CalibrarCommand { get; }
 
         public MainViewModel()
         {
@@ -37,6 +40,7 @@ namespace SensorInterface.ViewModels
 
             // Comandos:
             CarregarSensoresCommand = new RelayCommand(CarregarSensores);
+            CalibrarCommand = new RelayCommand(CalibrarSensores);
         }
 
         private async void CarregarSensores()
@@ -57,5 +61,28 @@ namespace SensorInterface.ViewModels
                 Pressoes.Add(sensor.Pressao);
             }
         }
+
+        private void CalibrarSensores()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected bool SetProperty<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null)
+        {
+            if (!Equals(field, newValue))
+            {
+                field = newValue;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+                return true;
+            }
+
+            return false;
+        }
+
+        private string temperaturaMaxima;
+        private string pressaoMaxima;
+
+        public string TemperaturaMaxima { get => temperaturaMaxima; set => SetProperty(ref temperaturaMaxima, value); }
+        public string PressaoMaxima { get => pressaoMaxima; set => SetProperty(ref pressaoMaxima, value); }
     }
 }
